@@ -1,6 +1,10 @@
 import cv2 as cv
 
+
+
 def rescale_frame(frame, scale=0.75):
+    
+    # this one works for imaegs, vidoes and live vidoes
     width = int(frame.shape[1]*scale)
     height = int(frame.shape[0]*scale)
     
@@ -10,19 +14,24 @@ def rescale_frame(frame, scale=0.75):
     
     return resized_frame
 
-capture = cv.VideoCapture(f'Resources\Videos\dog.mp4')
+def change_res(width, height):
+    # this one only works with live video data
+    cv.set(3, width)
+    cv.set(4, height)
+
+capture = cv.VideoCapture(f'Resources\Photos\cat_large.jpg')
 
 while True:
     
     isTrue, frame = capture.read()
     
-    resized_frame = rescale_frame(frame)
+    resized_frame = rescale_frame(frame,scale=0.25)
     
-    cv.imshow(winname='Video', mat=frame)
-    cv.imshow(winname='Resized Video', mat=resized_frame)
+    # cv.imshow(winname='Video', mat=frame)
+    # cv.imshow(winname='Resized Video', mat=resized_frame)
     
     
-    if cv.waitKey(20) and 0xFF == ord('d'):
+    if cv.waitKey(0) and 0xFF == ord('d'):
         break
     
 capture.release()

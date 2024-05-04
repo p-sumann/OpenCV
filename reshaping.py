@@ -1,7 +1,5 @@
 import cv2 as cv
 
-
-
 def rescale_frame(frame, scale=0.75):
     
     # this one works for imaegs, vidoes and live vidoes
@@ -26,11 +24,7 @@ while True:
     isTrue, frame = capture.read()
     
     resized_frame = rescale_frame(frame,scale=0.25)
-    
-    # cv.imshow(winname='Video', mat=frame)
-    # cv.imshow(winname='Resized Video', mat=resized_frame)
-    
-    
+
     if cv.waitKey(0) and 0xFF == ord('d'):
         break
     
